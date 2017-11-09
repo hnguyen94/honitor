@@ -3,6 +3,7 @@
 require 'mechanize'
 require 'awesome_print'
 require './pushover_api'
+require 'colorize'
 
 class PushNotification
   attr_accessor :dom_class, :page, :dom_class, :dom_objects, :link, :user_agent
@@ -25,13 +26,15 @@ class PushNotification
       @current_dom_objects = beautify(xml_array: pushy.fetch_dom_objects)
 
       if @old_dom_objects.nil? || @old_dom_objects == @current_dom_objects
-        puts "=" * 100
+        puts '=' * 100
         puts "Found #{@current_dom_objects.count} items"
-        puts 'No changes'
+        # puts "[#{show_time}.] No changes"
+        puts show_time.to_s.green + ' No changes'
       else
         new_changes = @current_dom_objects - @old_dom_objects
 
-        p 'Message will be sent..'
+        # p "[#{show_time}] Message will be sent.."
+        show_time.to_s.green + ' Message will be sent..'
         PushoverApi.new.send_push_notification(message: new_changes.to_s)
       end
 
@@ -50,5 +53,9 @@ class PushNotification
 
   def current_to_old
     @old_dom_objects = @current_dom_objects
+  end
+
+  def show_time
+    Time.new.strftime('%a,%e %b %Y %H:%M:%S %z')
   end
 end
