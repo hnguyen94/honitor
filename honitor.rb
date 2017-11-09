@@ -5,5 +5,5 @@ require 'pry-byebug'
 require './push_notification'
 
 
-reddit = PushNotification.new(link: 'https://www.ebay-kleinanzeigen.de/', dom_class: '.itemtile-title')
-reddit.check_changes(time_interval: 10)
+website = PushNotification.new(link: 'https://www.ebay-kleinanzeigen.de/', dom_class: '.itemtile-title')
+website.check_changes(time_interval: 10, random: true)

@@ -19,7 +19,7 @@ class PushNotification
     @page.search(@dom_class).to_a
   end
 
-  def check_changes(time_interval: 5)
+  def check_changes(time_interval: 5, random: true)
     loop do
       pushy = PushNotification.new(link: @link, dom_class: @dom_class)
       @current_dom_objects = beautify(xml_array: pushy.fetch_dom_objects)
@@ -35,8 +35,8 @@ class PushNotification
 
       current_to_old
 
-      # sleep(rand(1...time_interval))
-      sleep time_interval
+      sleep time_interval unless random
+      sleep(rand(1...time_interval))
     end
   end
 
