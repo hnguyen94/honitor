@@ -25,7 +25,9 @@ class PushNotification
       @current_dom_objects = beautify(xml_array: pushy.fetch_dom_objects)
 
       if @old_dom_objects.nil? || @old_dom_objects == @current_dom_objects
-        p 'No changes'
+        puts "=" * 100
+        puts "Found #{@current_dom_objects.count} items"
+        puts 'No changes'
       else
         new_changes = @current_dom_objects - @old_dom_objects
 
