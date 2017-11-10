@@ -6,7 +6,7 @@ require 'awesome_print'
 require './pushover_api'
 require 'colorize'
 
-class PushNotification
+class HonitorBot
   attr_accessor :dom_class, :page, :dom_class, :dom_objects, :link, :user_agent
 
   def initialize(link:, dom_class:)
@@ -23,8 +23,7 @@ class PushNotification
 
   def check_changes(time_interval: 5, random: true)
     loop do
-      pushy = PushNotification.new(link: @link, dom_class: @dom_class)
-      @current_dom_objects = beautify(xml_array: pushy.fetch_dom_objects)
+      @current_dom_objects = beautify(xml_array: fetch_dom_objects)
 
       if @old_dom_objects.nil? || @old_dom_objects == @current_dom_objects
         puts '=' * 100
