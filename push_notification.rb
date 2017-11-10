@@ -28,13 +28,11 @@ class PushNotification
       if @old_dom_objects.nil? || @old_dom_objects == @current_dom_objects
         puts '=' * 100
         puts "Found #{@current_dom_objects.count} items"
-        # puts "[#{show_time}.] No changes"
         puts show_time.to_s.green + ' No changes'
       else
         new_changes = @current_dom_objects - @old_dom_objects
 
-        # p "[#{show_time}] Message will be sent.."
-        show_time.to_s.green + ' Message will be sent..'
+        puts show_time.to_s.green + ' Message will be sent..'
         PushoverApi.new.send_push_notification(message: new_changes.to_s)
       end
 
