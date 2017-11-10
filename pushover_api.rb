@@ -5,8 +5,8 @@ require 'httparty'
 class PushoverApi
   include HTTParty
 
-  def initialize(token: 'aw537xrdofcsx4r9paojh2hcv5k2cx',
-                 user: 'ury8wqfqbhzuqg6ojcr4dia4o5k9tu')
+  def initialize(token: ENV['APP_TOKEN'],
+                 user: ENV['USER_TOKEN'])
     @token   = token
     @user    = user
   end

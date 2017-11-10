@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'mechanize'
+require 'dotenv/load'
 require 'awesome_print'
 require './pushover_api'
 require 'colorize'

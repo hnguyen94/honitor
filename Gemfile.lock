@@ -7,6 +7,7 @@ GEM
     colorize (0.8.1)
     domain_name (0.5.20170404)
       unf (>= 0.0.5, < 1.0.0)
+    dotenv (2.2.1)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     httparty (0.15.5)
@@ -51,6 +52,7 @@ PLATFORMS
 DEPENDENCIES
   awesome_print
   colorize
+  dotenv
   httparty
   mechanize
   pry
