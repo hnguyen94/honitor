@@ -63,4 +63,6 @@ class HonitorBot
   end
 end
 
+$stdout.reopen('.//hontor_bot.log', 'a')
+$stdout.sync = true
 HonitorBot.start
