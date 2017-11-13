@@ -29,6 +29,7 @@ class HonitorBot
         else
           new_changes = @current_dom_objects - @old_dom_objects
 
+          puts "Found new #{new_changes.count} items"
           puts show_time.to_s.green + ' Message will be sent..'
           PushoverApi.new.send_push_notification(message: "There are #{new_changes.count} updated items.")
         end
