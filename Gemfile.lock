@@ -5,6 +5,7 @@ GEM
     byebug (9.0.6)
     coderay (1.1.1)
     colorize (0.8.1)
+    daemons (1.2.5)
     domain_name (0.5.20170404)
       unf (>= 0.0.5, < 1.0.0)
     dotenv (2.2.1)
@@ -52,6 +53,7 @@ PLATFORMS
 DEPENDENCIES
   awesome_print
   colorize
+  daemons
   dotenv
   httparty
   mechanize
@@ -63,4 +65,4 @@ RUBY VERSION
    ruby 2.3.1p112
 
 BUNDLED WITH
-   1.15.1
+   1.15.4
