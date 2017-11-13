@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require 'daemons'
+
+Daemons.run('honitor_bot.rb', dir_mode: :script, dir: './tmp', log_output: true)

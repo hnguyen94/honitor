@@ -46,7 +46,7 @@ class HonitorBot
     end
 
     def read_config
-      config = YAML.load_file('config.yml')
+      config = YAML.load_file(File.dirname(__FILE__) + '/config.yml')
 
       config['config'].each do |key, value|
         instance_variable_set("@#{key}", value)
