@@ -5,16 +5,10 @@ require 'httparty'
 class PushoverApi
   include HTTParty
 
-  def initialize(token: ENV['APP_TOKEN'],
-                 user: ENV['USER_TOKEN'])
-    @token   = token
-    @user    = user
-  end
-
-  def send_push_notification(message:)
-    self.class.post('https://api.pushover.net/1/messages.json', body: {
-      'token'   => @token,
-      'user'    => @user,
+  def self.send_push_notification(message:)
+    self.post('https://api.pushover.net/1/messages.json', body: {
+      'token'   => ENV['APP_TOKEN'],
+      'user'    => ENV['USER_TOKEN'],
       'message' => message
     })
   end

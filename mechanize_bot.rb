@@ -1,7 +1,7 @@
 require 'mechanize'
 
 class MechanizeBot
-  attr_accessor :dom_class, :page, :dom_class, :dom_objects, :link, :user_agent
+  attr_accessor :page, :dom_class, :dom_objects, :link, :user_agent
 
   def initialize(link:, dom_class:)
     @agent = Mechanize.new
