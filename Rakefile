@@ -3,5 +3,5 @@
 task default: [:honitor]
 
 task :honitor do
-  ruby 'honitor.rb'
+  ruby 'honitor_bot.rb'
 end
