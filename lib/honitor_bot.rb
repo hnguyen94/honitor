@@ -6,8 +6,8 @@ require 'yaml'
 require 'pry'
 require 'pry-byebug'
 
-require_relative 'pushover_api'
-require_relative 'mechanize_bot'
+require_relative 'honitor/pushover_api'
+require_relative 'honitor/mechanize_bot'
 
 class HonitorBot
   class << self
