@@ -18,23 +18,18 @@ class HonitorBot
 
     def prepare_message
       if no_changes?
-        puts "Found #{@current_dom_objects.count} items"
-        puts show_time.to_s.green + ' No changes'
+        puts show_time.to_s.green + " Found #{@current_dom_objects.count} items || " + 'No changes'.yellow
       else
         new_changes = @current_dom_objects - @old_dom_objects
 
-        puts "Found new #{new_changes.count} items"
+        puts show_time.to_s.green + " Found new #{new_changes.count} items || " + 'Sent message!'.blue
         PushoverApi.send_push_notification(message: "On #{@name} there are #{new_changes.count} updated items.")
-        puts show_time.to_s.green + ' Sent Message!'
       end
-
-      puts
     end
 
     def check_changes(time_interval: 5, random: true)
       loop do
         page = MechanizeBot.new(link: @link, dom_class: @dom_class)
-
         @current_dom_objects = beautify(xml_array: page.fetch_dom_objects)
 
         prepare_message
@@ -59,7 +54,7 @@ class HonitorBot
     end
 
     def beautify(xml_array:)
-      xml_array.map { |xml_string| xml_string.content.strip! }
+      xml_array.map(&:content)
     end
 
     def show_time
@@ -68,6 +63,6 @@ class HonitorBot
   end
 end
 
-$stdout.reopen('logs/honitor_bot.log', 'a')
-$stdout.sync = true
+# $stdout.reopen('logs/honitor_bot.log', 'a')
+# $stdout.sync = true
 HonitorBot.start
