@@ -37,12 +37,12 @@ while random = gets.chomp
 end
 
 config = {
-  config: {
-    name:      name,
-    link:      link,
-    dom_class: dom_class,
-    interval:  interval,
-    random:    random
+  'config' => {
+    'name'      => name,
+    'link'      => link,
+    'dom_class' => dom_class,
+    'interval'  => interval,
+    'random'    => random
   }
 }
 
