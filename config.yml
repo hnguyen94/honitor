@@ -1,6 +1,0 @@
-config:
-  name: ebay-kleinanzeigen
-  link: https://www.ebay-kleinanzeigen.de/stadt/hamburg/
-  dom_class: .itemtile-title
-  interval: 10
-  random: false

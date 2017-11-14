@@ -1,2 +1,3 @@
 .env
 logs/honitor_bot.log
+config.yml
