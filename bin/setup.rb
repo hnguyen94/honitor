@@ -3,7 +3,12 @@
 require 'colorize'
 require 'fileutils'
 require 'yaml'
+require 'uri'
+
 include FileUtils
+
+LINK_REGEXP = /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/
+CLASS_REGEXP = /^.{1}\w+/
 
 if File.file?('./config.yml')
   puts 'config.yml already exist'.yellow
@@ -11,16 +16,28 @@ if File.file?('./config.yml')
 end
 
 print "What's the name of the website?: "
-name = gets.chomp
+while name = gets.chomp
+  break if !name.empty?
+  print 'A man needs a name!'.red + ' Try it again: '
+end
 
 print 'Paste your link in!: '
-link = gets.chomp
+while link = gets.chomp
+  break if link =~ LINK_REGEXP
+  print 'This is not a valid link!'.red + ' Try it again: '
+end
 
 print "What's the class name of that item list? (eg. .test-class): "
-dom_class = gets.chomp
+while dom_class = gets.chomp
+  break if dom_class =~ CLASS_REGEXP
+  print 'Looks like this is not a valid class!'.red + ' Does it start with a "." ? Try it again: '
+end
 
 print "Time interval for the bot in s?: "
-interval = gets.chomp.to_i
+while interval = gets.chomp.to_i
+  break if interval > 0
+  print 'This is not a number we can work with!'.red + ' Try it again: '
+end
 
 print "Random interval? (y/n): "
 while random = gets.chomp
@@ -32,7 +49,7 @@ while random = gets.chomp
     random = false
     break
   else
-    puts 'Please do it again!'
+    print 'Please answer with y (yes) or n (no).'.red + ' Try it again: '
   end
 end
 
