@@ -1,15 +1,5 @@
 # frozen_string_literal: true
 
-require 'dotenv/load'
-require 'colorize'
-require 'yaml'
-require 'pry'
-require 'pry-byebug'
-
-require_relative 'honitor/pushover_api'
-require_relative 'honitor/mechanize_bot'
-require_relative 'honitor/user_config'
-
 class Honitor
   class << self
     def start
