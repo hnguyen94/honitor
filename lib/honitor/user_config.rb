@@ -5,11 +5,10 @@ require 'attributed_object'
 class UserConfig
   include AttributedObject::Strict
 
-
-  attribute :name, String
-  attribute :link, String
-  attribute :dom_class, String
-  attribute :interval, Integer, default: 30
-  attribute :random, Boolean, default:   true
-  attribute :log, Boolean, default: true
+  attribute :name, :string
+  attribute :link, :string
+  attribute :dom_class, :string
+  attribute :interval, :integer, default: 30
+  attribute :random, :boolean, default:   true
+  attribute :log, :boolean, default: true
 end
