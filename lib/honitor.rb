@@ -14,6 +14,7 @@ class Honitor
   class << self
     def start
       read_config
+      switch_log(@user_config.log)
       check_changes(time_interval: @user_config.interval, random: @user_config.random)
     end
 
@@ -54,6 +55,16 @@ class Honitor
       @user_config = UserConfig.new(config['config'])
     end
 
+    def switch_log(log)
+      if log
+        puts 'Log will be saved in logs/honitor.log'
+        $stdout.reopen('logs/honitor.log', 'a')
+        $stdout.sync = true
+      end
+
+      puts 'Log is turned off'
+    end
+
     def beautify(xml_array:)
       xml_array.map(&:content)
     end
@@ -64,6 +75,4 @@ class Honitor
   end
 end
 
-$stdout.reopen('logs/honitor_bot.log', 'a')
-$stdout.sync = true
 Honitor.start
