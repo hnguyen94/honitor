@@ -8,12 +8,13 @@ require 'pry-byebug'
 
 require_relative 'honitor/pushover_api'
 require_relative 'honitor/mechanize_bot'
+require_relative 'honitor/user_config'
 
 class HonitorBot
   class << self
     def start
       read_config
-      check_changes(time_interval: @interval, random: @random)
+      check_changes(time_interval: @user_config.interval, random: @user_config.random)
     end
 
     def prepare_message
@@ -23,13 +24,15 @@ class HonitorBot
         new_changes = @current_dom_objects - @old_dom_objects
 
         puts show_time.to_s.green + " Found new #{new_changes.count} items || " + 'Sent message!'.blue
-        PushoverApi.send_push_notification(message: "On #{@name} there are #{new_changes.count} updated items.")
+        PushoverApi.send_push_notification(
+          message: "On #{@user_config.name} there are #{new_changes.count} updated items."
+        )
       end
     end
 
-    def check_changes(time_interval: 5, random: true)
+    def check_changes(time_interval:, random:)
       loop do
-        page = MechanizeBot.new(link: @link, dom_class: @dom_class)
+        page = MechanizeBot.new(link: @user_config.link, dom_class: @user_config.dom_class)
         @current_dom_objects = beautify(xml_array: page.fetch_dom_objects)
 
         prepare_message
@@ -48,9 +51,7 @@ class HonitorBot
     def read_config
       config = YAML.load_file('config.yml')
 
-      config['config'].each do |key, value|
-        instance_variable_set("@#{key}", value)
-      end
+      @user_config = UserConfig.new(config['config'])
     end
 
     def beautify(xml_array:)
