@@ -51,14 +51,7 @@ class HonitorBot
     def read_config
       config = YAML.load_file('config.yml')
 
-      @user_config = UserConfig.new
-      config['config'].each do |key, value|
-        @user_config.name      = value if key == 'name'
-        @user_config.link      = value if key == 'link'
-        @user_config.dom_class = value if key == 'dom_class'
-        @user_config.interval  = value if key == 'interval'
-        @user_config.random    = value if key == 'random'
-      end
+      @user_config = UserConfig.new(config['config'])
     end
 
     def beautify(xml_array:)
