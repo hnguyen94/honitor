@@ -1,12 +1,16 @@
 # frozen_string_literal: true
 
-require_relative 'lib/honitor'
+require 'dotenv/load'
+require 'colorize'
+require 'yaml'
+require 'pry'
+require 'pry-byebug'
+
+Dir.glob('lib/**/*.rb') { |file| require_relative file }
 
 task default: [:start]
 
 task :start do
-  # ruby 'lib/honitor.rb'
-
   Honitor.start
 end
 
