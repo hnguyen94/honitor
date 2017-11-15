@@ -10,7 +10,7 @@ require_relative 'honitor/pushover_api'
 require_relative 'honitor/mechanize_bot'
 require_relative 'honitor/user_config'
 
-class HonitorBot
+class Honitor
   class << self
     def start
       read_config
@@ -66,4 +66,4 @@ end
 
 $stdout.reopen('logs/honitor_bot.log', 'a')
 $stdout.sync = true
-HonitorBot.start
+Honitor.start
