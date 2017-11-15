@@ -3,7 +3,7 @@
 task default: [:start]
 
 task :start do
-  ruby 'lib/honitor_bot.rb'
+  ruby 'lib/honitor.rb'
 end
 
 task :init do
