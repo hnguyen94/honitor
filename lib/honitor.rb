@@ -74,5 +74,3 @@ class Honitor
     end
   end
 end
-
-Honitor.start
