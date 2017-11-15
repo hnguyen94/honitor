@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
-require 'virtus'
+require 'attributed_object'
 
 class UserConfig
-  include Virtus.model
+  include AttributedObject::Strict
+
 
   attribute :name, String
   attribute :link, String
