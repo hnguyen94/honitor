@@ -15,6 +15,7 @@ class Honitor
     def start
       read_config
       switch_log(@user_config.log)
+      mkdir 'logs'
       check_changes(time_interval: @user_config.interval, random: @user_config.random)
     end
 
@@ -67,6 +68,10 @@ class Honitor
 
     def beautify(xml_array:)
       xml_array.map(&:content)
+    end
+
+    def mkdir(name)
+      FileUtils.mkdir_p(name) unless File.directory?(name)
     end
 
     def show_time
