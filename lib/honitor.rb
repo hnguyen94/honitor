@@ -21,6 +21,8 @@ class Honitor
       end
 
       puts HonitorHelpers::Log.show_time.to_s.green + message
+      puts @current_dom_objects
+      puts
     end
 
     def check_changes
