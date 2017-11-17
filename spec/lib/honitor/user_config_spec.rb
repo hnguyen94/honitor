@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe UserConfig do
@@ -13,7 +15,7 @@ describe UserConfig do
 
     config = described_class.new(attributes)
 
-    attributes.keys.each do |key|
+    attributes.each_key do |key|
       expect(config.send(key)).to eq(attributes[key])
     end
   end
@@ -23,7 +25,7 @@ describe UserConfig do
       name: 'Hello! Im a name!',
       link: 'http://google.com',
       dom_class: '.superclass',
-      interval: "HA! IM NOT AN INTERVAL!",
+      interval: 'HA! IM NOT AN INTERVAL!',
       random: true,
       log: false
     }
