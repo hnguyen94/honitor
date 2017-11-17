@@ -11,10 +11,10 @@ describe UserConfig do
       log: false
     }
 
-    cfg = described_class.new(attributes)
+    config = described_class.new(attributes)
 
     attributes.keys.each do |key|
-      expect(cfg.send(key)).to eq(attributes[key])
+      expect(config.send(key)).to eq(attributes[key])
     end
   end
 
