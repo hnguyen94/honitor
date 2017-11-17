@@ -1,5 +1,11 @@
 # frozen_string_literal: true
 
+require 'dotenv/load'
+require 'colorize'
+require 'yaml'
+
+Dir[File.dirname(__FILE__) + '/**/*.rb'].each { |file| require file }
+
 class Honitor
   class << self
     def start
@@ -7,6 +13,22 @@ class Honitor
       switch_log(@user_config.log)
       mkdir 'logs'
       check_changes
+    end
+
+    def check_changes
+      loop do
+        page = MechanizeBot.new(link: @user_config.link, dom_class: @user_config.dom_class)
+        @current_dom_objects = HonitorHelpers::Mechanize.beautify(xml_list: page.fetch_dom_objects)
+
+        pry
+
+        prepare_message
+
+        @old_dom_objects = @current_dom_objects
+
+        sleep @user_config.interval unless @user_config.random
+        sleep(rand(1...@user_config.interval))
+      end
     end
 
     def prepare_message
@@ -23,20 +45,6 @@ class Honitor
       puts HonitorHelpers::Log.show_time.to_s.green + message
       puts @current_dom_objects
       puts
-    end
-
-    def check_changes
-      loop do
-        page = MechanizeBot.new(link: @user_config.link, dom_class: @user_config.dom_class)
-        @current_dom_objects = HonitorHelpers::Mechanize.beautify(xml_list: page.fetch_dom_objects)
-
-        prepare_message
-
-        @old_dom_objects = @current_dom_objects
-
-        sleep @user_config.interval unless @user_config.random
-        sleep(rand(1...@user_config.interval))
-      end
     end
 
     def no_changes?

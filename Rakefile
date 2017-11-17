@@ -1,12 +1,9 @@
 # frozen_string_literal: true
-
-require 'dotenv/load'
-require 'colorize'
-require 'yaml'
 require 'pry'
 require 'pry-byebug'
+require 'rspec/core/rake_task'
 
-Dir.glob('lib/**/*.rb') { |file| require_relative file }
+require_relative 'lib/honitor'
 
 task default: [:start]
 
@@ -17,3 +14,5 @@ end
 task :init do
   ruby 'bin/setup.rb'
 end
+
+RSpec::Core::RakeTask.new(:spec)

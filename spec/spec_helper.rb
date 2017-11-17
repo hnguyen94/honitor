@@ -1,3 +1,5 @@
+require 'pry'
+
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
@@ -21,4 +23,17 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 
   config.expose_dsl_globally = true
+
+  config.warnings = false
 end
+
+require 'honitor'
+
+TEST_CONFIG = UserConfig.new(
+  name: 'Test Config',
+  link: "file://#{File.dirname(__FILE__)}/support/test.html",
+  dom_class: '.super',
+  interval: 0,
+  random: true,
+  log: true
+)
