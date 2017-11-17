@@ -29,11 +29,13 @@ end
 
 require 'honitor'
 
+require 'support/helpers'
+
 TEST_CONFIG = UserConfig.new(
   name: 'Test Config',
   link: "file://#{File.dirname(__FILE__)}/support/test.html",
   dom_class: '.super',
-  interval: 0,
+  interval: 1,
   random: true,
   log: true
 )

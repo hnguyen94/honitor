@@ -20,14 +20,12 @@ class Honitor
         page = MechanizeBot.new(link: @user_config.link, dom_class: @user_config.dom_class)
         @current_dom_objects = HonitorHelpers::Mechanize.beautify(xml_list: page.fetch_dom_objects)
 
-        pry
-
         prepare_message
 
         @old_dom_objects = @current_dom_objects
 
         sleep @user_config.interval unless @user_config.random
-        sleep(rand(1...@user_config.interval))
+        sleep(rand(1..@user_config.interval))
       end
     end
 
@@ -35,8 +33,8 @@ class Honitor
       if no_changes?
         message = " Found #{@current_dom_objects.count} items || " + 'No changes'.yellow
       else
-        message = " Found new #{new_changes.count} items || " + 'Sent message!'.blue
         new_changes = @current_dom_objects - @old_dom_objects
+        message = " Found new #{new_changes.count} items || " + 'Sent message!'.blue
         PushoverApi.send_push_notification(
           message: "On #{@user_config.name} there are #{new_changes.count} updated items."
         )
