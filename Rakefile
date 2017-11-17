@@ -5,7 +5,7 @@ require 'rspec/core/rake_task'
 
 require_relative 'lib/honitor'
 
-task default: [:start]
+task default: [:spec]
 
 task :start do
   Honitor.start
