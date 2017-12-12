@@ -46,9 +46,7 @@ class Honitor
     end
 
     def no_changes?
-      @no_changes ||= begin
-        @old_dom_objects.nil? || @old_dom_objects == @current_dom_objects
-      end
+      @old_dom_objects.nil? || @old_dom_objects == @current_dom_objects
     end
 
     def read_config
