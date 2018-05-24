@@ -8,7 +8,7 @@ require_relative 'lib/honitor'
 task default: [:start]
 
 task :start do
-  Honitor.start
+  Hydra.execute
 end
 
 task :init do

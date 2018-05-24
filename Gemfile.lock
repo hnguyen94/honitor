@@ -34,6 +34,7 @@ GEM
     nokogiri (1.8.0)
       mini_portile2 (~> 2.2.0)
     ntlm-http (0.1.1)
+    parallel (1.12.1)
     pry (0.10.4)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -71,6 +72,7 @@ DEPENDENCIES
   dotenv
   httparty
   mechanize
+  parallel
   pry
   pry-byebug
   rake
