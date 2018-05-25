@@ -29,8 +29,7 @@ class Honitor
 
       @old_dom_objects = @current_dom_objects
 
-      sleep @user_config.interval unless @user_config.random
-      sleep(rand(1..@user_config.interval))
+      interval
     end
   end
 
@@ -72,5 +71,10 @@ class Honitor
 
   def mkdir(name)
     FileUtils.mkdir_p(name) unless File.directory?(name)
+  end
+
+  def interval
+    sleep @user_config.interval unless @user_config.random
+    sleep(rand(1..@user_config.interval))
   end
 end
