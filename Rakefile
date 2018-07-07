@@ -15,4 +15,8 @@ task :init do
   ruby 'bin/setup.rb'
 end
 
+task :test do
+  Honitor.new(instance: 'aboutyou-red-hoodie')
+end
+
 RSpec::Core::RakeTask.new(:spec)
