@@ -36,8 +36,6 @@ class Honitor
   def prepare_message
     if no_changes?
       message = " Found #{@current_dom_objects.count} items || " + 'No changes'.yellow
-      content = ContentManager.new(app_name: @user_config.name, link: @user_config.link, change_count: 3)
-      PushoverApi.send_push_notification(message: content.standard_text)
     else
       message = " Found new #{new_changes.count} items || " + 'Sent message!'.blue
 
