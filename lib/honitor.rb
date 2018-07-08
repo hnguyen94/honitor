@@ -41,7 +41,9 @@ class Honitor
       message = " Found new #{new_changes.count} items || " + 'Sent message!'.blue
 
       new_changes = @current_dom_objects - @old_dom_objects
-      content = ContentManager(app_name: @user_config.name, link: @user_config.link, change_count: new_changes.count)
+      content = ContentManager.new(app_name: @user_config.name,
+                                   link: @user_config.link,
+                                   change_count: new_changes.count)
       PushoverApi.send_push_notification(message: content.standard_text)
     end
 
@@ -66,7 +68,7 @@ class Honitor
       return
     end
 
-    site_class_list = YAML.load_file("configs/site_class_list.yml")
+    site_class_list = YAML.load_file("site_class_list.yml")
     
     if site_class_list.nil?
       raise 'Dom class is nil and site_class_list.yml is not existing!'
@@ -75,7 +77,7 @@ class Honitor
     site_class_list = OpenStruct.new(site_class_list)
 
 
-    if @site_class_list.dig(@user_config.name).nil?
+    if site_class_list.dig(@user_config.name).nil?
       raise 'Dom Class is nil and name is not existing in site_class_list!'
     end
 

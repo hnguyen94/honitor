@@ -1,3 +1,4 @@
 .env
 logs/*
 configs/
+site_class_list.yml
