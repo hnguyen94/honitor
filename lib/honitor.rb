@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
-require 'dotenv/load'
 require 'colorize'
+require 'dotenv/load'
+require 'ostruct'
 require 'yaml'
 
 Dir[File.dirname(__FILE__) + '/**/*.rb'].each { |file| require file }
@@ -57,6 +58,28 @@ class Honitor
     config = YAML.load_file("configs/#{@instance}.yml")
 
     @user_config = UserConfig.new(config['config'])
+    map_site_class
+  end
+
+  def map_site_class
+    if @user_config.dom_class != nil 
+      return
+    end
+
+    site_class_list = YAML.load_file("configs/site_class_list.yml")
+    
+    if site_class_list.nil?
+      raise 'Dom class is nil and site_class_list.yml is not existing!'
+    end
+
+    site_class_list = OpenStruct.new(site_class_list)
+
+
+    if @site_class_list.dig(@user_config.name).nil?
+      raise 'Dom Class is nil and name is not existing in site_class_list!'
+    end
+
+    @user_config.dom_class = site_class_list.dig(@user_config.name)
   end
 
   def switch_log(log)
