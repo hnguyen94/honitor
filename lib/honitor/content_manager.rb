@@ -28,6 +28,6 @@ class ContentManager
   private
 
   def plural?(number:)
-    number < 1
+    number > 1
   end
 end
