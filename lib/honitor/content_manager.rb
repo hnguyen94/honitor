@@ -1,4 +1,5 @@
 require 'attributed_object'
+require 'shorturl'
 
 class ContentManager
   include AttributedObject::Strict
@@ -9,7 +10,7 @@ class ContentManager
 
   def initialize(app_name:, link:, change_count: 0)
     @app_name = app_name
-    @link = link
+    @link = ShortURL.shorten(link, :tinyurl)
     @change_count = change_count
   end
 

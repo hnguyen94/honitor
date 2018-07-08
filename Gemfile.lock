@@ -56,6 +56,7 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.7.0)
     rspec-support (3.7.0)
+    shorturl (1.0.0)
     slop (3.6.0)
     unf (0.1.4)
       unf_ext
@@ -77,6 +78,7 @@ DEPENDENCIES
   pry-byebug
   rake
   rspec
+  shorturl
 
 RUBY VERSION
    ruby 2.3.1p112
