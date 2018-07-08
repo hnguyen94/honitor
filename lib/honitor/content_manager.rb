@@ -17,9 +17,9 @@ class ContentManager
     standard_text = ""
 
     if plural?(number: @change_count)
-      standard_text = "On #{@app_name} there are #{@change_count} updated items. #{link}"
+      standard_text = "On #{@app_name} there are #{@change_count} updated items.\nClick link to check changes!\n#{link}"
     else
-      standard_text = "On #{@app_name} is #{@change_count} updated item. #{link}"
+      standard_text = "On #{@app_name} is #{@change_count} updated item.\nClick link to check changes!\n#{link}"
     end
 
     standard_text
