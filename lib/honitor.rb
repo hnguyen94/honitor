@@ -38,9 +38,12 @@ class Honitor
     if no_changes?
       message = " Found #{@current_dom_objects.count} items || " + 'No changes'.yellow
     else
+      new_changes = @current_dom_objects - @old_dom_objects
       message = " Found new #{new_changes.count} items || " + 'Sent message!'.blue
 
-      new_changes = @current_dom_objects - @old_dom_objects
+      puts "#{new_changes} changed!".green
+      puts
+
       content = ContentManager.new(app_name: @user_config.name,
                                    link: @user_config.link,
                                    change_count: new_changes.count)
